@@ -12,7 +12,7 @@ console.log("Server running on port " + app.get("port"))
 /* middlewares */
 app.use(morgan('dev')) // Ver solicitudes HTTP con el script "dev"
 app.use(cors({ // Recibir solicitudes HTTP desde orígenes especificados
-    origin: 'http://127.0.0.1:5500' /* Cambia el puerto según donde esté corriendo tu front-end */
+    origin: 'http://127.0.0.1:5500' /* Cambiar el puerto según donde esté corriendo tu front-end */
 }))
 app.use(express.json()) // Habilitar el análisis de cuerpos de solicitudes HTTP en formato JSON en el servidor
 
@@ -34,5 +34,3 @@ app.post('/currentCart/fullCart', async(req, res)=> { // Configuración de ruta 
     }
     res.sendStatus(400) // Estado de respuesta: BAD
 })
-
-/* P5. user route */

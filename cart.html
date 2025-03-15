@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HappyCart - Tu Carrito</title>
     <link rel="stylesheet" href="style_cart.min.css"> <!-- Enlaza el archivo CSS minificado -->
-    <script defer src="animation_cart.min.js"></script> <!-- Enlaza el archivo JavaScript minificado -->
+    <script src="cartProducts.js"></script> <!-- Enlaza el archivo JavaScript para el Back-End -->
+    <script defer src="animation_cart.js"></script> <!-- Enlaza el archivo JavaScript minificado -->
+    <script defer src="cartService.js"></script> <!-- Enlaza el archivo JavaScript para la lógica del carrito -->
 </head>
 <body>
     <!-- Encabezado -->
@@ -19,23 +21,23 @@
         <nav>
             <ul>
                 <li><a href="items.html">All our products</a></li>
-                <li><a href="cart.html">Your happy cart</a></li>
+                <li><a href="cart.html" id="cartIcon">Your happy cart
+                    <img src="shopping-cart.webp" srcset="shopping-cart.webp 800w, shopping-cart.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" alt="Marcador rojo con un carrito de compras" loading="lazy"><span id="counter">0</span>
+                </a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Página del Carrito -->
     <main>
-        <!-- Contenedor -->
-        <div id="cart-container"></div>
-        <div id="empty-cart-message" style="display: none;">Tu carrito está vacío.</div>
-
-        <!-- Total a Pagar -->
-        <div id="total-container">
-            <h3>Total a pagar:</h3>
-            <p id="total">$0</p>
-            <button type="submit">Pagar</button>
-        </div>
+		<p id="emptyCart" class="hidden">Ups! El carrito está vacío, <a href="items.html">elige algunos de nuestros productos</a></p>
+		<section id="containerProduct"></section>
+        <section id="total">
+            <p>Unidades totales: <span id="quantity">0</span></p>
+            <p>Precio total: $<span id="price">0</span></p>
+            <button id="fullCart">¡Comprar!</button>
+            <button id="reboot">¡Borrar!</button>
+        </section>
     </main>
 
     <!-- Pie de Página -->

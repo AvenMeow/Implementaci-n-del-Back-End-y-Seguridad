@@ -1,0 +1,45 @@
+VIDEOTUTORIAL: https://www.youtube.com/watch?v=UEjf7k32mTg&ts 
+node -v (Versión de Node.js)
+npm init -yes (Inicialización del proyecto)
+npm i cors dotenv express pg (Dependencias de producción)
+npm i nodemon morgan --save-dev (Dependencias de desarrollo)
+file[.gitignore] =+ node_modules (Excluir restos de librerías Node.js del directorio de trabajo en Git)
+dir[src] > file[app.js] (Creación del archivo main del servidor web)
+
+package.json =+ "type": "module", (Ajustes del archivo de configuraciones)
+"main": "index.js", => "app.js",
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1" => "dev": "nodemon src/app.js",
+                                                             "start": "node src/app.js"
+},
+
+app.js =+ import express from 'express'... (P1: Configurar puerto del servidor web)
+npm run dev (Iniciar y recargar automáticamente el server cuando se detectan cambios en el código (Ctrl+S) )
+src > dir[database] > file[connection.database.js] (Creación del archivo de conexión entre el server y el database)
+
+PostgreSQL >> CREATE DATABASE db; (Creación de la bases de datos)
+CREATE TABLE products (
+id SERIAL PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+price NUMERIC(10, 2) NOT NULL,
+image VARCHAR(250),
+deleted SMALLINT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);...
+
+connection.database.js =+ import pg from 'pg'... (P2: Configurar conexión del database)
+file[.env] =+ DATABASE_URL:"abc",... (Creación del archivo de variables de entorno)
+.gitignore =+ .env (Excluir datos seguros del directorio de trabajo en Git)
+app.js =+ app.get('/Ware/products', async(req, res)=> {... (P2: Configurar ruta del database)
+Thunder Client (Ctrl+Mayús+R) >> New Request | GET | localhost:x/Ware/products | Send (Testeo de APIs: respuesta de la base de datos)
+dir[pages] > dir[js] > file[cartProducts] (Creación del archivo de productos)
+
+Live Server >> Go Live | Server is Started at port:... ()
+
+cartProducts =+ async function getProducts() {... (P3: Solicitar datos del servidor web en el front-end)
+app.js =+ import cors from 'cors'... (Activación y configuración del Cors)
+index.js, etc... =+ getProducts().then(items=> {... (P3: Mostrar datos del servidor web en el front-end)
+
+app.js =+ app.post('/currentCart/fullCart', async(req, res)=> {... (P4: Configurar ruta del front-end)
+Thunder Client (Ctrl+Mayús+R) >> New Request | POST | localhost:x/currentCart/fullCart | Body | JSON | [{"pid": 19}] | Send (Testeo de APIs: respuesta del front-end)
+
